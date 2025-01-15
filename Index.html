@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe with Image Buttons</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Image-based buttons -->
+    <button class="img-button" onclick="createIframe('https://vtn5c31dcjtimmb9o2lm882bk13i56hh-a-sites-opensocial.googleusercontent.com/gadgets/ifr?container=enterprise&country=ALL&lang=en&libs=core&mid=88&parent=https://sites.google.com/site/unblockedgame76/retrobowl&sanitize=0&url=https://274079163-174037128449362058.preview.editmysite.com/uploads/b/139890129-899796311729593176/files/rtbl.xml&v=9cec2ba00d185a8c&view=default#st=e=AIHE3cARh%252FjoPlZ5OU7%252BLLI9a2FwQ%252FTahnryzgDyxS7lvJ9qdmn9dQns0T5ihSi82B5JMDVpLcVp%252BV75gv%252F%252Fzh0wlzu7ll%252FrW%252Fg%252FWN3GZBjokEm5XHPf0Nyd5%252F6bxOKGKpYVf0GdiDCl&c=enterprise&rpctoken=-8580663105699196922')">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRetro_Bowl&psig=AOvVaw1D9GqDBi8NADPfPUoEs4aP&ust=1736699659830000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKDPpsSM7ooDFQAAAAAdAAAAABAE" alt="Retro Bowl">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://hva2021.github.io/bitlife/index.html')">
+        <img src="https://via.placeholder.com/150?text=Bitlife" alt="Bitlife">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://script.google.com/macros/s/AKfycbw6e8fflbfydV7kom5id09nKaM6ix0hLlXHbs3XHOnxzrndUgPtHUHENrwKomI2Hpk3/exec')">
+        <img src="https://via.placeholder.com/150?text=Google+Script" alt="Google Script">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://images-opensocial.googleusercontent.com/gadgets/ifr?container=ig&url=https://cdn.jsdelivr.net/gh/bobydob/JSEngine@e7d53b913d54429e5e118ca9541fb0f8f1f66bdc/dist/cc.xml')">
+        <img src="https://via.placeholder.com/150?text=JSEngine" alt="JSEngine">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://hva2021.github.io/motox3m/index.html')">
+        <img src="https://via.placeholder.com/150?text=MotoX3M" alt="MotoX3M">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://hva2021.github.io/monkey-mart/index.html')">
+        <img src="https://via.placeholder.com/150?text=Monkey+Mart" alt="Monkey Mart">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://lnahtml.github.io/a5/idle-digging-tycoon/')">
+        <img src="https://via.placeholder.com/150?text=Idle+Digging+Tycoon" alt="Idle Digging Tycoon">
+    </button>
+
+    <button class="img-button" onclick="createIframe('https://pr0xl0id.github.io/tumb-mask/')">
+        <img src="https://via.placeholder.com/150?text=Tumb+Mask" alt="Tumb Mask">
+    </button>
+
+    <div id="iframeContainer">
+        <button id="closeButton" onclick="closeIframe()">X</button>
+        <iframe id="iframe" src="" width="800" height="600" frameborder="0"></iframe>
+        <button id="fullscreenButton" onclick="toggleFullscreen()">Fullscreen</button>
+    </div>
+
+    <script>
+        // Disable right-click globally
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();  // Disable right-click
+        });
+
+        // Disable all common keyboard shortcuts and input actions globally
+        document.addEventListener('keydown', function(e) {
+            // Disable common shortcuts like Ctrl+U, Ctrl+I, Ctrl+C, Ctrl+V
+            if (e.ctrlKey) {
+                if (e.key === 'u' || e.key === 'i' || e.key === 'c' || e.key === 'v') {
+                    e.preventDefault();
+                }
+            }
+
+            // Disable other commonly used key combinations (e.g. F12, DevTools)
+            if (e.key === 'F12' || e.key === 'F11' || e.key === 'I' || e.key === 'J' || e.key === 'S' || e.key === 'P') {
+                e.preventDefault();
+            }
+
+            // Disable right-click actions with keyboard (i.e., keyboard shortcuts for context menu)
+            if (e.key === 'Shift' && e.ctrlKey) {
+                e.preventDefault();
+            }
+        });
+
+        // Disable text selection and copying from the website
+        document.addEventListener('mousedown', function(e) {
+            e.preventDefault(); // Disable text selection
+        });
+
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault(); // Disable text selection
+        });
+
+        // Disable drag-and-drop actions
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();  // Prevent dragging
+        });
+
+        // Iframe functions
+        function createIframe(url) {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('iframe');
+            iframe.src = url;  // Set the iframe source to the provided URL
+            iframeContainer.style.display = 'block';
+        }
+
+        function closeIframe() {
+            const iframeContainer = document.getElementById('iframeContainer');
+            const iframe = document.getElementById('iframe');
+            iframe.src = '';  // Clear iframe source to stop loading
+            iframeContainer.style.display = 'none';
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { // Firefox
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { // IE/Edge
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+
+</body>
+</html>
